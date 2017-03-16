@@ -1,0 +1,24 @@
+[user]
+	name = Maksim Mikhalchuk
+	email = maksim.mikhalchuk@epolsoft.com
+[core]
+	editor = gedit
+[alias]
+	hist0 = log --graph --abbrev-commit --decorate --all --format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(dim white) - %an%C(reset) %C(bold green)(%ar)%C(reset)%C(bold yellow)%d%C(reset)%n %C(white)%s%C(reset)'
+	hist = log --graph --abbrev-commit --decorate --all --format=format:'%h - %aD - %an (%ar)%d%n %s'
+	hist1 = log --pretty=format:'%h %ad | %s%d [%an]' --graph --date=short --all
+	histme = log --pretty=format:'%h %ad | %s%d [%an]' --graph --date=short
+	type = cat-file -t
+	dump = cat-file -p
+        list = ls-tree -r
+        index = ls-tree -s
+	co = checkout
+	st = status --short --branch
+	merg = merge --no-ff
+	go = checkout
+	br = branch -a
+        last = log --name-status HEAD^..HEAD
+
+[commit]
+	template = /home/xmakmik/.gitmessage
+
