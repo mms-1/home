@@ -28,14 +28,6 @@ alias rm='rm -v'
 alias ll='ls -lah'
 alias ls='ls -F --color=auto'
 
-#alias start_miguelol='/home/xmakmik/ws/git_rep/Miguelol/config/start_miguelol.sh &'
-#alias start_colestherol='/home/xmakmik/COLESTHEROL/start_colestherol.sh &'
-
-# Cool tools made by Jenkins
-alias start_miguelol='/storelab/hlr_mde/GoogolPlex/xmakmik/tools/Miguelol/miguelol_start.sh'
-alias start_colestherol='/storelab/hlr_mde/GoogolPlex/xmakmik/tools/Colestherol/colestherol_start.sh'
-alias start_sea='/storelab/hlr_mde/GoogolPlex/xmakmik/tools/Sea/sea_start.sh'
-
 source ~/git-completion.bash
 
 function my_ip()
