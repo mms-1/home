@@ -1,0 +1,48 @@
+"*":
+  "atom-beautify":
+    general:
+      _analyticsUserId: "8b681a9f-ea2a-4f1b-9ece-041723df9e48"
+  core:
+    automaticallyUpdate: false
+    projectHome: "D:\\xmik\\ws\\stuff"
+    telemetryConsent: "no"
+    themes: [
+      "atom-dark-ui"
+      "atom-dark-syntax"
+    ]
+  editor:
+    fontSize: 12
+    invisibles: {}
+    lineHeight: 1.1
+    showIndentGuide: true
+    showInvisibles: true
+    tabLength: 4
+  "exception-reporting":
+    userId: "d959de37-c16d-27f8-31c7-d8815b1fdce2"
+  linter: {}
+  minimap:
+    plugins:
+      cursorline: true
+      cursorlineDecorationsZIndex: 0
+      "highlight-selected": true
+      "highlight-selectedDecorationsZIndex": 0
+      pigments: true
+      pigmentsDecorationsZIndex: 0
+  "omni-ruler":
+    columns: [
+      "20"
+      "80"
+      "120"
+    ]
+  "split-diff":
+    diffWords: true
+    ignoreWhitespace: true
+    leftEditorColor: "red"
+    rightEditorColor: "green"
+    syncHorizontalScroll: true
+  "todo-show":
+    sortBy: "Type"
+  "tree-view": {}
+  "tree-view-git-status": {}
+  welcome:
+    showOnStartup: false
