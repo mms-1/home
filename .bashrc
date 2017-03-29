@@ -10,7 +10,9 @@ CYAN='\e[1;36m'
 NC='\e[0m'
 ###
 
-echo -e "${BLUE}This is BASH ${RED}${BASH_VERSION%.*}${BLUE} - DISPLAY on ${RED}$DISPLAY${NC}"
+echo -e "${BLUE}### WELCOME TO: ###${NC}"
+echo -e `${SHELL} --version`
+echo -e "${BLUE} - DISPLAY on ${RED}$DISPLAY${NC}"
 date
 function _exit()
 {
