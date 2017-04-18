@@ -10,6 +10,12 @@ CYAN='\e[1;36m'
 NC='\e[0m'
 ###
 
+# Proxy stuff
+export HTTP_PROXY="http://$USERNAME:$PASSWORD@$PROXY_SERVER:$PROXY_PORT"
+export HTTPS_PROXY=$HTTP_PROXY
+export FTP_PROXY=$HTTP_PROXY
+export SOCKS_PROXY=$HTTP_PROXY
+
 echo -e "${BLUE}### WELCOME TO: ###${NC}"
 echo -e `${SHELL} --version`
 echo -e "${BLUE} - DISPLAY on ${RED}$DISPLAY${NC}"
