@@ -1,0 +1,118 @@
+# Your snippets
+#
+# Atom snippets allow you to enter a simple prefix in the editor and hit tab to
+# expand the prefix into a larger code block with templated values.
+#
+# You can create a new snippet in this file by typing "snip" and then hitting
+# tab.
+#
+# An example CoffeeScript snippet to expand log to console.log:
+#
+################################################################################
+### To find the scope use: Ctrl+Shift+P -> Editor: Log Cursor Scope
+################################################################################
+# '.source.coffee': # <- scope -<
+#   'Console log':
+#     'prefix': 'log'
+#     'body': 'console.log $1'
+#
+# Each scope (e.g. '.source.coffee' above) can only be declared once.
+#
+# This file uses CoffeeScript Object Notation (CSON).
+# If you are unfamiliar with CSON, you can read more about it in the
+# Atom Flight Manual:
+# https://atom.io/docs/latest/using-atom-basic-customization#cson
+
+'.source.ttcn3':
+    'Action':
+        'prefix': 'act'
+        'body': """
+            f_action("$1");
+            v_result := $2
+            if ( not v_result ) { setverdict ( fail ); goto END; }
+        """
+
+    'TestCase':
+        'prefix': 'tc'
+        'body': """
+
+            //##############################################################################
+            testcase tc_B$1()
+            runs on TCAP_MML_Component
+            {
+              log("==============================================================");
+              log(" B$1)                                                         ");
+              log("==============================================================");
+
+              var TCAP_MML_Component TCAP_MML_Component_PTC := TCAP_MML_Component.create("PTC_VLR");
+              TCAP_MML_Component_PTC.start( f_B$1() );
+              timer t_timeout := px_Timer_Block_Value;
+              t_timeout.start;
+              alt
+              {
+                [] t_timeout.timeout
+                {
+                  log ( "PTC Blocked!" );
+                  setverdict ( inconc );
+                }
+                [] TCAP_MML_Component_PTC.done {}
+              }
+            }
+
+            function f_B$1
+            runs on TCAP_MML_Component
+            {
+              var boolean v_result := true;
+              var MML_ANSWER_PRINTOUT v_corona_before;
+              var object_list v_object;
+
+              var octetstring v_IMSI := f_Converter_Charstring_To_Map(px_user1.imsi);
+              var octetstring v_MSISDN := f_Converter_Charstring_To_Map_wPrefix(px_user1.msisdn);
+              var octetstring v_VLR_Number := f_Converter_Hexstring_To_Map_wPrefix(px_NodeOrigination_VLR.number);
+
+              f_PortMap();
+              log("_______________________________________________________________________________");
+              log("                                                                               ");
+              log("*********************************PRECONDITIONS*********************************");
+              log("_______________________________________________________________________________");
+
+              f_action("Active ClearReg and check before test case execution (CORONA, SYRIP)");
+              v_result := f_MDE_Check_Before ( px_Corona, false, v_corona_before);
+              if ( not v_result ) { setverdict ( fail ); goto END; }
+
+              v_result := f_MDE_MML_PCORP_check("_block_","_number_ _revision_","_corr_id_",0,true);
+              if ( not v_result ) { setverdict ( fail ); goto END; }
+
+              // Settings for the testcase
+
+              f_action("Initiate traces on CP trace.");
+              v_result := f_MDE_MML_Initiate_CP_Trace
+              ( {
+                  t_TEnt("$3"),
+                }, cp_trace_location );
+              if ( not v_result ) { setverdict ( fail ); log ("*** Initiating traces failed"); goto END;}
+
+              log("_______________________________________________________________________________");
+              log("                                                                               ");
+              log("************************************ TEST *************************************");
+              log("_______________________________________________________________________________");
+
+              // TEST BODY
+
+              label END;
+              log("_______________________________________________________________________________");
+              log("                                                                               ");
+              log("*********************************** RESTORE ***********************************");
+              log("_______________________________________________________________________________");
+              f_action("End tracing via CP trace.");
+              v_result := f_MDE_MML_End_CP_Trace(cp_trace_location);
+              if ( not v_result ) { setverdict ( fail ); log ("*** Closing trace log failed");}
+
+              f_action("Check CORONA and syrip");
+              v_result := f_MDE_Check_After (v_corona_before)    // in MML_ANSWER_PRINTOUT p_corona_before
+              if ( not v_result ) { setverdict( fail ); }
+
+              f_PortUnmap();
+
+            }// End of f_B$1
+        """
