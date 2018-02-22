@@ -1,24 +1,29 @@
 [user]
 	name = Maksim Mikhalchuk
-	email = maksim.mikhalchuk@epolsoft.com
+	email = maksim.mikhalchuk@<_____>.com
 [core]
-	editor = gedit
+#	editor = gedit
+	editor = vim -f
+	pager = less -r
+[color]
+	status = auto
+[merge]
+	tool = kdiff3
 [alias]
-	hist0 = log --graph --abbrev-commit --decorate --all --format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(dim white) - %an%C(reset) %C(bold green)(%ar)%C(reset)%C(bold yellow)%d%C(reset)%n %C(white)%s%C(reset)'
-	hist = log --graph --abbrev-commit --decorate --all --format=format:'%h - %aD - %an (%ar)%d%n %s'
-	hist1 = log --pretty=format:'%h %ad | %s%d [%an]' --graph --date=short --all
-	histme = log --pretty=format:'%h %ad | %s%d [%an]' --graph --date=short
+	hist   = log --graph --abbrev-commit --decorate --all --format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(dim white) - %an%C(reset) %C(bold green)(%ar)%C(reset)%C(bold yellow)%d%C(reset)%n %C(white)%s%C(reset)'
+    	histme = log --graph --abbrev-commit --decorate       --format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(dim white) - %an%C(reset) %C(bold green)(%ar)%C(reset)%C(bold yellow)%d%C(reset)%n %C(white)%s%C(reset)'
+	hist0  = log --graph --abbrev-commit --decorate --all --format=format:'%h - %aD - %an (%ar)%d%n %s'
+        last   = log --stat --word-diff --pretty=fuller -p -U1 -1
+        hist1  = log --name-status HEAD^..HEAD
+
 	type = cat-file -t
 	dump = cat-file -p
         list = ls-tree -r
         index = ls-tree -s
+
 	co = checkout
+	go = checkout
 	st = status --short --branch
 	merg = merge --no-ff
-	go = checkout
-	br = branch -a
-        last = log --name-status HEAD^..HEAD
-
-[commit]
-	template = /home/xmakmik/.gitmessage
-
+	br = branch -vv
+	bra = branch -a -vv
