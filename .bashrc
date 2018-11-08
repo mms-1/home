@@ -22,6 +22,20 @@ trap _exit EXIT
 
 trap 'echo -ne "${RED}Process interrupted.${NC}"' 2              # trap Ctrl+C
 
+#Welcome
+function _hello_cow() {
+	echo -e "I'll tell you what -\n `fortune -a`\n Have a nice day!" | cowsay -f duck
+	# cowsay -f moose
+	# cowsay -f mutilated
+	# cowsay -f three-eyes
+}
+
+. ~/git-completion.bash
+. ~/git-prompt.sh
+export GIT_PS1_SHOWDIRTYSTATE=1
+
+export PS1='\[\e[1;32m\]\u\[\e[0m\]@\[\e[0;35m\]\h\[\e[0m\][\[\e[1;33m\]\t\[\e[0m\]]$(__git_ps1 "(\[\e[1;36m\]%s\[\e[0m\])")[\[\e[0;33m\]${PWD#${PWD%/*/*/*}/}\[\e[0m\]] `if [ $? = 0 ]; then echo "\[\033[01;32m\]✔"; else echo "\[\033[01;31m\]✘"; fi`\[\e[0m\] \[\e[1;37m\]\$\[\e[0m\] '
+
 # ------------------------------------------------------------------
 #         aliases
 # ------------------------------------------------------------------
